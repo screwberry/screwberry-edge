@@ -13,7 +13,7 @@ def handle_data(input):
     if input[0] not in stored:
         print("Identified new sensor: " + input[0])
         send_data(input)
-    if input[0] in stored:
+    else:
         # Send data if any value has changed more than set threshold
         for check in cfg.THRESHOLDS.items():
             if round(abs(stored[input[0]][check[0]] - input[1][check[0]]),2) >= check[1]:
@@ -22,7 +22,8 @@ def handle_data(input):
 def send_data(input):
     stored[input[0]] = input[1]
     msg_txt_formatted = MSG.format(time=input[1]['time'],
-                                   alias = cfg.ALIASES[input[0]] if input[0] in cfg.ALIASES else input[0],
+                                   alias = cfg.ALIASES.get(input[0], input[0]),
+                                   #alias = cfg.ALIASES[input[0]] if input[0] in cfg.ALIASES else input[0],
                                    temperature=input[1]['temperature'],
                                    humidity=input[1]['humidity'],
                                    pressure=input[1]['pressure'],
