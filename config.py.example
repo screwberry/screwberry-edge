@@ -25,5 +25,5 @@ MESSAGE = ('{{'
         '"acceleration": {acceleration}'
         '}}')
 
-# Replace with your own
-CONNECTION_STRING = "HostName="
+# Replace with your own connection string
+CONNECTION = "HostName="
