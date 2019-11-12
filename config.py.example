@@ -9,11 +9,21 @@ ALIASES = {
 
 # Thresholds for sending a new event
 THRESHOLDS = {
-        'time': 60.0, # Send the data every x seconds even if there is no significant change in measured values
+        'time': 300.0, # Send the data every x seconds even if there is no significant change in measured values
         'temperature': 0.02, 
         'humidity': 1.0, 
         'pressure': 0.10
         }
-        
+
+# Format of the data sent to IoT Hub
+MESSAGE = ('{{'
+        '"time": {time}, '
+        '"alias": "{alias}", '
+        '"temperature": {temperature}, '
+        '"humidity": {humidity}, '
+        '"pressure": {pressure}, '
+        '"acceleration": {acceleration}'
+        '}}')
+
 # Replace with your own
 CONNECTION_STRING = "HostName="
