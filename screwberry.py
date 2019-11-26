@@ -22,8 +22,10 @@ def handle_data(input):
 
 def send_data(input):
     stored[input[0]] = input[1]
+    time = str(input[1]['time']).split('.')
+    unix_time = int(time[0] + time[1][0:3])
     msg_txt_formatted = cfg.MESSAGE.format(
-            time=input[1]['time'],
+            time=unix_time,
             alias=cfg.ALIASES.get(input[0], input[0]),
             temperature=input[1]['temperature'],
             humidity=input[1]['humidity'],
